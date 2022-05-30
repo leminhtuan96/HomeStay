@@ -2,7 +2,7 @@
 @section('title', 'Create')
 @section('content')
     <h1 style="text-align: center">Create room</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card card-default">
             <div class="card-body">
@@ -10,15 +10,18 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Name</label>
-                            <input name="name" class="form-control" required placeholder="Enter name">
+                            <input name="name" class="form-control" placeholder="Enter name">
+                            <p style="color: red">{{($errors->has('name'))? $errors->first('name') : ""}}</p>
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <input name="address" class="form-control" required placeholder="Enter Address">
+                            <input name="address" class="form-control" placeholder="Enter Address">
+                            <p style="color: red">{{($errors->has('address'))? $errors->first('address') : ""}}</p>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input name="description" class="form-control" required placeholder="Enter Desscription">
+                            <input name="description" class="form-control" placeholder="Enter Desscription">
+                            <p style="color: red">{{($errors->has('description'))? $errors->first('description') : ""}}</p>
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-6">
@@ -46,6 +49,11 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Chọn ảnh</label>
+                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                         </div>
 
                         <div class="row">

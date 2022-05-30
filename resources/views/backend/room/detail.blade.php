@@ -8,6 +8,7 @@
         <th>Description</th>
         <th>Bedroom</th>
         <th>Bathroom</th>
+        <th>Image</th>
         <th>Status</th>
         <th>City</th>
         <th>Category</th>
@@ -20,12 +21,13 @@
         <td>{{$room->description}}</td>
         <td>{{$room->bedroom}}</td>
         <td>{{$room->bathroom}}</td>
+        <td><img src="{{asset('storage/' . $room->image)}}" width="100px" height="70" alt=""></td>
         <td>{{$room->statusname}}</td>
         <td>{{$room->cityname}}</td>
         <td>{{$room->categoryname}}</td>
         <td>{{Auth::user()->name ?? ""}}</td>
       </tr>
-  </table>      
+  </table>
 @endsection
 
 

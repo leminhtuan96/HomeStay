@@ -34,6 +34,10 @@ class CityController extends Controller
         } else {
             $path = "images/default.jpg";
         }
+        $valition=$request->validate([
+            'name'=>'required'
+        ]);
+
         $city = new City();
         $city->name = $request["name"];
         $city->image = $path;

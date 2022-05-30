@@ -10,7 +10,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Name</label>
-                            <input name="name" class="form-control" required value="{{$city->name}}" value="{{ old('name') }}" placeholder="Enter name">
+                            <input name="name" class="form-control" value="{{$city->name}}" value="{{ old('name') }}" placeholder="Enter name">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Chọn ảnh</label>

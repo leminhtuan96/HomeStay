@@ -2,7 +2,7 @@
 @section("title","Update")
 @section('content')
     <h1 style="text-align: center">Update Room</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container-fluid">
             <div class="row mb-2">
@@ -16,8 +16,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Name</label>
-                            <input name="name" class="form-control" required value="{{$room->name}}" value="{{ old('name') }}"
-                                placeholder="Enter name">
+                            <input name="name" class="form-control" required value="{{$room->name}}" value="{{ old('name') }}" placeholder="Enter name">
                         </div>
                         <div class="form-group">
                             <label>Address</label>
@@ -55,6 +54,11 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Chọn ảnh</label>
+                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1" value="{{asset('storage/'.$room->image)}}">
+                        </div>
+
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
@@ -77,7 +81,7 @@
                                     <select name="status_id" class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;">
                                         @foreach ($statuses as $status)
-                                            <option  value="{{ $status->id }}"  {{ $room->status_id == $status->id ? 'selected' : '' }}>{{ $status->name }} 
+                                            <option  value="{{ $status->id }}"  {{ $room->status_id == $status->id ? 'selected' : '' }}>{{ $status->name }}
                                             </option>
                                         @endforeach
                                     </select>

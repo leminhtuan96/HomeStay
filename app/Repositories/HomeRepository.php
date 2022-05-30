@@ -26,6 +26,7 @@ class HomeRepository extends BaseRepository
         $home->description = $data["description"];
         $home->bedroom = $data["bedroom"];
         $home->bathroom = $data["bathroom"];
+        $home->image=$data["image"];
         $home->status_id = $data["status_id"];
         $home->city_id = $data["city_id"];
         $home->category_id = $data["category_id"];
@@ -41,6 +42,7 @@ class HomeRepository extends BaseRepository
         $home->description = $data["description"] ?? $home->description;
         $home->bedroom = $data["bedroom"] ?? $home->bedroom;
         $home->bathroom = $data["bathroom"] ?? $home->bathroom;
+        $home->image=$data["image"]??$home->image;
         $home->status_id = $data["status_id"] ?? $home->status_id;
         $home->city_id = $data["city_id"] ?? $home->city_id;
         $home->category_id = $data["category_id"] ?? $home->category_id;
@@ -56,19 +58,19 @@ class HomeRepository extends BaseRepository
         ->join("cities","cities.id","=","homes.city_id")
         ->join("status","status.id","=","homes.status_id")
         ->where("homes.id",$id)
-        ->select("homes.*","cities.name as cityname","users.name as username","status.name as statusname","categories.name as category")
+        ->select("homes.*","cities.name as cityname","users.username as username","status.name as statusname","categories.name as categoryname","categories.price as categoryprice")
         ->first();
     }
 
     public function getAll()
     {
-        return DB::table("homes")
-        ->join("users","users.id","=","homes.user_id")
-        ->join("categories", "categories.id","=","homes.category_id")
-        ->join("cities","cities.id","=","homes.city_id")
-        ->join("status","status.id","=","homes.status_id")
-        ->orderByDesc('homes.id')
-        ->select("homes.*","cities.name as cityname","categories.name as categoryname","users.username as username","status.name as statusname")
+        return DB::table("rooms")
+        ->join("users","users.id","=","rooms.user_id")
+        ->join("categories","categories.id","=","rooms.category_id")
+        ->join("cities","cities.id","=","rooms.city_id")
+        ->join("status","status.id","=","rooms.status_id")
+        ->orderByDesc('rooms.id')
+        ->select("rooms.*","cities.name as cityname","categories.name as categoryname","users.username as username","status.name as statusname","categories.price as categoryprice")
         ->get();
     }
 

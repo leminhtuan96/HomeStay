@@ -26,18 +26,33 @@ class RoomController extends Controller
     {
         $cities = DB::table('cities')->get();
         $categories = DB::table('categories')->get();
-        $statuses = DB::table('statuses')->get();
+        $statuses = DB::table('status')->get();
         return view("backend.room.create", compact(['cities', 'categories', 'statuses']));
     }
 
     public function store(Request $request)
     {
+        if ($request->hasFile('image')) {
+            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs("images", $fileName, "public");
+        } else {
+            $path = "images/anh.jpg";
+        }
+
+        $valition = $request->validate([
+            "name"=>"required|min:6",
+            "address"=>"required",
+            "description"=>"required",
+        ]);
+        
+
         $room = new Room();
         $room->name = $request["name"];
         $room->address = $request["address"];
         $room->description = $request["description"];
         $room->bedroom = $request["bedroom"];
         $room->bathroom = $request["bathroom"];
+        $room->image = $path;
         $room->status_id = $request["status_id"];
         $room->city_id = $request["city_id"];
         $room->category_id = $request["category_id"];
@@ -57,19 +72,27 @@ class RoomController extends Controller
         $room = $this->roomRepository->getById($id);
         $cities = DB::table('cities')->get();
         $categories = DB::table('categories')->get();
-        $statuses = DB::table('statuses')->get();
+        $statuses = DB::table('status')->get();
         return view("backend.room.update", compact(['cities', 'categories', 'statuses','room']));
     }
 
 
     public function update(Request $request,$id)
     {
+        if ($request->hasFile('image')) {
+            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs("images", $fileName, "public");
+        } else {
+            $path = "images/anh.jpg";
+        }
+
         $room = Room::findOrFail($id);
         $room -> name = $request -> name ?? $room->name;
         $room -> address = $request -> address ?? $room->address;
         $room -> description = $request -> description ?? $room->description;
         $room -> bedroom = $request -> bedroom ?? $room->bedroom;
         $room -> bathroom = $request -> bathroom ?? $room->bathroom;
+        $room -> image = $path ?? $room->image;
         $room -> status_id = $request -> status_id ?? $room->status_id;
         $room -> city_id = $request -> city_id ?? $room->city_id;
         $room -> category_id = $request -> category_id ?? $room->category_id;
@@ -92,9 +115,9 @@ class RoomController extends Controller
         ->join("users","users.id","=","rooms.user_id")
         ->join("categories", "categories.id","=","rooms.category_id")
         ->join("cities","cities.id","=","rooms.city_id")
-        ->join("statuses","statuses.id","=","rooms.status_id")
+        ->join("status","status.id","=","rooms.status_id")
         ->orderByDesc('rooms.id')
-        ->select("rooms.*","cities.name as cityname","categories.name as categoryname","users.username as username","statuses.name as statusname")
+        ->select("rooms.*","cities.name as cityname","categories.name as categoryname","users.username as username","status.name as statusname")
         ->where('rooms.name','LIKE',"%{$search}%")->get();
         return view("backend.room.list", compact("rooms"));
     }

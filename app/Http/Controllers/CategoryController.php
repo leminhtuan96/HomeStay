@@ -28,6 +28,11 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $valition=$request->validate([
+            'name'=>'required',
+            'price'=>'required'
+        ]);
+
         $category = new Category();
         $category->name = $request["name"];
         $category->price = $request["price"];

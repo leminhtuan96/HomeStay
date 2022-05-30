@@ -26,6 +26,7 @@ class RoomRepository extends BaseRepository
         $room -> description = $data["description"];
         $room -> bedroom = $data["bedroom"];
         $room -> bathroom = $data["bathroom"];
+        $room -> image = $data["image"];
         $room -> status_id = $data["status_id"];
         $room -> city_id = $data["city_id"];
         $room -> category_id = $data["category_id"];
@@ -41,6 +42,7 @@ class RoomRepository extends BaseRepository
         $room -> description = $data["description"] ?? $room -> description;
         $room -> bedroom = $data["bedroom"] ?? $room -> bedroom;
         $room -> bathroom = $data["bathroom"] ?? $room -> bathroom;
+        $room -> image = $data["image"] ?? $room -> image;
         $room -> status_id = $data["status_id"] ?? $room -> status_id;
         $room -> city_id = $data["city_id"] ?? $room -> city_id;
         $room -> category_id = $data["category_id"] ?? $room -> category_id;
@@ -54,7 +56,7 @@ class RoomRepository extends BaseRepository
         ->join("cities","cities.id","=","rooms.city_id")
         ->join("status","status.id","=","rooms.status_id")
         ->where("rooms.id",$id)
-        ->select("rooms.*","cities.name as cityname","categories.name as categoryname","users.username as username","status.name as statusname")
+        ->select("rooms.*","cities.name as cityname","categories.name as categoryname","users.username as username","status.name as statusname","categories.price as categoryprice")
         ->first();
     }
 

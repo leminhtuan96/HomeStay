@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Models\City;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('fonend.index');})->name("user");
+
 Route::middleware("checkAuth")->group(function () {
     Route::get("/room/list", [RoomController::class, "index"])->name("room.list");
     Route::get("/room/detail/{id}", [RoomController::class, "show"])->name("room.detail");
@@ -45,6 +46,10 @@ Route::middleware("checkAuth")->group(function () {
     Route::get("/search/",[RoomController::class,'search'])->name('search');
 });
 
+Route::get("/home/list",[HomeController::class,"index"])->name("home.list");
+Route::get("/home/detail/{id}",[HomeController::class,"show"])->name("home.detail");
+Route::get('home/city/{id}',[HomeController::class,'showCity'])->name('home.city');
+Route::get('/home/category/{id}',[HomeController::class,'showCategory'])->name('home.category');
 
 
 
