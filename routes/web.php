@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\HomeController;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 
 Route::middleware("checkAuth")->group(function () {
@@ -43,14 +45,16 @@ Route::middleware("checkAuth")->group(function () {
     Route::get("/category/update/{id}", [CategoryController::class, "edit"])->name("category.edit");
     Route::post("/category/update/{id}", [CategoryController::class, "update"])->name("category.update");
 
-    Route::get("/search/",[RoomController::class,'search'])->name('search');
+
+
+
+    Route::get("/search/", [RoomController::class, 'search'])->name('search');
 });
 
-Route::get("/home/list",[HomeController::class,"index"])->name("home.list");
-Route::get("/home/detail/{id}",[HomeController::class,"show"])->name("home.detail");
-Route::get('home/city/{id}',[HomeController::class,'showCity'])->name('home.city');
-Route::get('/home/category/{id}',[HomeController::class,'showCategory'])->name('home.category');
-
+Route::get("/home/list", [HomeController::class, "index"])->name("home.list");
+Route::get("/home/detail/{id}", [HomeController::class, "show"])->name("home.detail");
+Route::get('home/city/{id}', [HomeController::class, 'showCity'])->name('home.city');
+Route::get('/home/category/{id}', [HomeController::class, 'showCategory'])->name('home.category');
 
 
 Route::get("/register", [AuthController::class, "showFormRegister"])->name('formregister');
@@ -58,3 +62,13 @@ Route::post("/register", [AuthController::class, "register"])->name("register");
 Route::get("/login", [AuthController::class, "showFormLogin"])->name("formlogin");
 Route::post("/login", [AuthController::class, "login"])->name("login");
 Route::get("/loguot", [AuthController::class, "loguot"])->name("loguot");
+
+
+Route::get('booking/list', [BookingController::class, 'index'])->name('booking.list');
+Route::post('booking/create', [BookingController::class, 'store'])->name('booking.store');
+Route::get('booking/history',[BookingController::class,'showBooking'])->name('booking.history');
+Route::get('booking/{id}', [BookingController::class, 'booking'])->name('booking');
+Route::post('booking/update/{id}', [BookingController::class, 'update'])->name('booking.update');
+Route::get('delete/{id}',[BookingController::class,'destroy'])->name('booking.delete');
+
+

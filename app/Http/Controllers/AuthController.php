@@ -23,6 +23,21 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        $valition=$request->validate([
+            'username'=>'required',
+            'email'=>'required|email',
+            'password'=>'required|confirmed|min:8',
+            'confirmPassword'=>'required'
+        ],[
+            'username.required'=>'Không được để trống',
+            'email.required'=>'Không được để trống',
+            'email.email'=>'Xem lại email',
+            'password.required'=>'Không được để trống',
+            'confirmPassword.required'=>'Không được để trống'
+        ]);
+        // dd($valition);
+
+
         if($request->password !== $request->confirmPassword)
         {
             return redirect()->back();

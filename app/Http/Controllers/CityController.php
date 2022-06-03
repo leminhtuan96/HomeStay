@@ -35,7 +35,10 @@ class CityController extends Controller
             $path = "images/default.jpg";
         }
         $valition=$request->validate([
-            'name'=>'required'
+            'name'=>'required|min:6'
+        ],[
+            'name.required'=>'không được để trống',
+            'name.min'=>'ít nhất :min ký tự'
         ]);
 
         $city = new City();

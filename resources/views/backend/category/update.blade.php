@@ -1,7 +1,7 @@
 @extends('backend.index')
 @section('title', 'create')
 @section('content')
-    <h1 style="text-align: center">Update Category</h1>
+    <h1 style="text-align: center; font-size: 2.8rem">Update Category</h1>
     <form action="" method="post">
         @csrf
         <div class="card card-default">

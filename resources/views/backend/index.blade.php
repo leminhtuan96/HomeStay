@@ -7,7 +7,7 @@
     <title>Admin Homestay</title>
 
     <!-- Icon Title -->
-    <link rel="icon" type="image/png" href="{{asset('Login_v8/images/icons/favicon.ico')}}"/>
+    <link rel="icon" type="image/png" href="{{ asset('Login_v8/images/icons/favicon.ico') }}" />
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href={{ asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback') }}>
@@ -37,7 +37,8 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60"
+                width="60">
         </div>
 
         <!-- Navbar -->
@@ -49,15 +50,19 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{route("room.list")}}" class="nav-link">Room</a>
-                  </li>
+                    <a href="{{ route('room.list') }}" class="nav-link">Room</a>
+                </li>
                 <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route("city.list")}}" class="nav-link">City</a>
-      </li>
+                    <a href="{{ route('city.list') }}" class="nav-link">City</a>
+                </li>
                 <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route("category.list")}}" class="nav-link">Category</a>
-      </li>
+                    <a href="{{ route('category.list') }}" class="nav-link">Category</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ route('booking.list') }}" class="nav-link">Booking</a>
+                </li>
             </ul>
+
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -67,10 +72,10 @@
                         <i class="fas fa-search"></i>
                     </a>
                     <div class="navbar-search-block">
-                        <form class="form-inline" action="{{route('search')}}" method="GET">
+                        <form class="form-inline" action="{{ route('search') }}" method="GET">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search"
-                                    aria-label="Search">
+                                <input class="form-control form-control-navbar" name="search" type="search"
+                                    placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-navbar" type="submit">
                                         <i class="fas fa-search"></i>
@@ -90,9 +95,9 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{route('room.list')}}" class="brand-link">
-                <img src="{{asset('dist/img/AdminLogo.jpeg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: .8">
+            <a href="{{ route('room.list') }}" class="brand-link">
+                <img src="{{ asset('dist/img/AdminLogo.jpeg') }}" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Home Stay</span>
             </a>
 
@@ -101,11 +106,11 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                            alt="User Image">
                     </div>
                     <div class="info">
-                        <h4 class="d-block" style="color: aliceblue">{{Auth::user()->username ?? ""}}</h4>
-                        {{-- <a href="#" class="d-block">{{Auth::user()->username ?? ""}}</a> --}}
+                        <h4 class="d-block" style="color: aliceblue">{{ Auth::user()->username ?? '' }}</h4>
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
@@ -137,7 +142,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('loguot')}}" class="nav-link">
+                                    <a href="{{ route('loguot') }}" class="nav-link">
                                         <p>loguot</p>
                                     </a>
                                 </li>
@@ -156,8 +161,8 @@
             <div class="content-header">
                 <div class="container-fluid">
 
-                            <h1 class="m-0">@yield("title","List")</h1>
-                            @yield('content')
+                    <h1 class="m-0">@yield('title', '')</h1>
+                    @yield('content')
 
                 </div><!-- /.container-fluid -->
             </div>
@@ -166,7 +171,7 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                        
+
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->

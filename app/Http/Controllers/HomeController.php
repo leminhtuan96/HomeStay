@@ -34,7 +34,7 @@ class HomeController extends Controller
     public function show($id)
     {
         $home=$this->home->getById($id);
-        return view("fonend.home.detail",compact("home"));
+        return view("fonend.home.detail-room",compact("home"));
     }
 
     public function edit($id)
@@ -58,7 +58,7 @@ class HomeController extends Controller
         ->where('rooms.city_id',$id)->select('rooms.*','cities.name as cityname','categories.name as categoryname',"categories.price as categoryprice")
         ->get();
         // dd($cities);
-        return view('fonend.iondex',compact('rooms'));
+        return view('fonend.home.list',compact('rooms'));
     }
 
     public function showCategory($id)

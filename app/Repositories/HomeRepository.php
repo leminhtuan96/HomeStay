@@ -52,13 +52,12 @@ class HomeRepository extends BaseRepository
 
     public function getById($id)
     {
-        return DB::table("homes")
-        ->join("users","users.id","=","homes.user_id")
-        ->join("categories","categories.id","=","homes.category_id")
-        ->join("cities","cities.id","=","homes.city_id")
-        ->join("status","status.id","=","homes.status_id")
-        ->where("homes.id",$id)
-        ->select("homes.*","cities.name as cityname","users.username as username","status.name as statusname","categories.name as categoryname","categories.price as categoryprice")
+        return DB::table("rooms")
+        ->join("categories","categories.id","=","rooms.category_id")
+        ->join("cities","cities.id","=","rooms.city_id")
+        ->join("status","status.id","=","rooms.status_id")
+        ->where("rooms.id",$id)
+        ->select("rooms.*","cities.name as cityname","status.name as statusname","categories.name as categoryname","categories.price as categoryprice")
         ->first();
     }
 

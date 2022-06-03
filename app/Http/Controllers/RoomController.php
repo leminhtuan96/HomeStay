@@ -43,8 +43,13 @@ class RoomController extends Controller
             "name"=>"required|min:6",
             "address"=>"required",
             "description"=>"required",
+        ],[
+            'name.required'=>'không được để trống',
+            'name.min'=>'tối thiểu :min ký tự',
+            'address.required'=>'không được để trống',
+            'description.required'=>'không được để trống',
         ]);
-        
+
 
         $room = new Room();
         $room->name = $request["name"];

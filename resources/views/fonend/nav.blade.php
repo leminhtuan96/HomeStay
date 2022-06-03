@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Icon Title -->
-    <link rel="icon" type="image/png" href="{{asset('Login_v8/images/icons/favicon.ico')}}"/>
+    <link rel="icon" type="image/png" href="{{ asset('Login_v8/images/icons/favicon.ico') }}" />
 
     {{-- <!-- Favicon -->
     <link href="{{asset('home/img/favicon.ico')}}" rel="icon"> --}}
@@ -17,40 +17,45 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
+    {{-- jquery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- Libraries Stylesheet -->
-    <link href="{{asset('home/lib/animate/animate.min.css')}}" rel="stylesheet">
-    <link href="{{asset('home/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('home/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('home/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{asset('home/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('home/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{asset('home/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('home/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
-        {{-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div> --}}
+        </div>
         <!-- Spinner End -->
 
 
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                <a href="{{ route('home.list') }}" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
-                        <img class="img-fluid" src="{{asset('home/img/logo-home.png')}}" alt="Icon" style="width: 30px; height: 30px;">
+                        <img class="img-fluid" src="{{ asset('home/img/logo-home.png') }}" alt="Icon"
+                            style="width: 30px; height: 30px;">
                     </div>
                     <h1 class="m-0 text-primary">Home Stay</h1>
                 </a>
@@ -61,11 +66,13 @@
                     <div class="navbar-nav ms-auto">
                         <a href="" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="{{route('booking.history')}}" class="nav-item nav-link">History</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="margin-right: 0px">{{Auth::user()->username}}</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                style="margin-right: 0px">{{ Auth::user()->username ?? '' }}</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="testimonial.html" class="dropdown-item">Profile</a>
-                                <a href="{{route('loguot')}}" class="dropdown-item">Loguot</a>
+                                <a href="{{ route('loguot') }}" class="dropdown-item">Loguot</a>
                             </div>
                         </div>
                     </div>
@@ -79,6 +86,10 @@
         <div class="container-fluid header bg-white p-0">
             <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
                 <div class="col-md-6 p-5 mt-lg-5">
+                    <h1 class="display-5 animated fadeIn mb-4">Find A <span class="text-primary">Perfect Home</span> To Live With Your Family</h1>
+                    <p class="animated fadeIn mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet
+                        sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
+                    <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Get Started</a>
                 </div>
                 <div class="col-md-6 animated fadeIn">
                     <div class="owl-carousel header-carousel">
@@ -129,25 +140,19 @@
             </div>
         </div>
         <!-- Search End -->
-        <h1 class="m-0">@yield("title","")</h1>
-        @yield("content")
+        <h1 class="m-0">@yield('title', '')</h1>
+        @yield('content')
 
-        <section class="content">
-            <div class="container-fluid">
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('home/lib/wow/wow.min.js') }}"></script>
+        <script src="{{ asset('home/lib/easing/easing.min.js') }}"></script>
+        <script src="{{ asset('home/lib/waypoints/waypoints.min.js') }}"></script>
+        <script src="{{ asset('home/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-            </div><!-- /.container-fluid -->
-        </section>
-  <!-- JavaScript Libraries -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{asset('home/lib/wow/wow.min.js')}}"></script>
-  <script src="{{asset('home/lib/easing/easing.min.js')}}"></script>
-  <script src="{{asset('home/lib/waypoints/waypoints.min.js')}}"></script>
-  <script src="{{asset('home/lib/owlcarousel/owl.carousel.min.js')}}"></script>
-
-  <!-- Template Javascript -->
-  <script src="{{asset('js/main.js')}}"></script>
+        <!-- Template Javascript -->
+        <script src="{{ asset('home/js/main.js') }}"></script>
 </body>
 
 </html>
-

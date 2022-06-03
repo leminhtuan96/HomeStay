@@ -31,6 +31,9 @@ class CategoryController extends Controller
         $valition=$request->validate([
             'name'=>'required',
             'price'=>'required'
+        ],[
+            'name.required'=>'không được để trống',
+            'price.required'=>'không được để trống'
         ]);
 
         $category = new Category();

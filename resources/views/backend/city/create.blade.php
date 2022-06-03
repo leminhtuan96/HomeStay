@@ -1,7 +1,7 @@
 @extends('backend.index')
 @section('title', 'create')
 @section('content')
-    <h1 style="text-align: center">Create City</h1>
+    <h1 style="text-align: center; font-size: 2.8rem">Create City</h1>
     <form method="post" enctype="multipart/form-data">
         @csrf
         <div class="card card-default">

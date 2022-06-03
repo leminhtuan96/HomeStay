@@ -1,7 +1,7 @@
 @extends('backend.index')
 @section("title","Update")
 @section('content')
-    <h1 style="text-align: center">Update Room</h1>
+    <h1 style="text-align: center; font-size: 2.8rem">Update Room</h1>
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container-fluid">
